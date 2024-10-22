@@ -1,0 +1,51 @@
+.movie-card {
+  width: 200px; /* Ancho fijo de la tarjeta */
+  height: 350px;
+  border-radius: 0.5rem; /* Esquinas redondeadas */
+  border: 1px solid rgb(255, 255, 255); /* Borde */
+  background-color: var(--card-bg); /* Color de fondo de la tarjeta */
+  color: var(--card-text); /* Color del texto */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra */
+  overflow: hidden; /* Para ocultar contenido desbordante */
+}
+
+.movie-card:hover {
+  box-shadow: 0 2px 4px rgb(255, 255, 255); /* Sombra al hacer hover */
+  border-color: white;
+}
+
+.movie-card__image-container {
+  position: relative; /* Para posicionar el rating */
+  height: 80%; /* Altura del contenedor de la imagen */
+}
+
+.movie-card__image {
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Altura completa */
+  object-fit: cover; /* Mantiene la proporción de la imagen */
+}
+
+.movie-card__rating {
+  position: absolute; /* Posicionamiento absoluto */
+  top: 0.5rem; /* Espaciado desde arriba */
+  right: 0.5rem; /* Espaciado desde la derecha */
+  display: inline-flex; /* Flex para alinear el contenido */
+  align-items: center; /* Alineación centrada */
+  padding: 0.25rem 0.75rem; /* Espaciado interno */
+  font-size: 0.75rem; /* Tamaño de fuente pequeño */
+  font-weight: 600; /* Peso de la fuente */
+  border-radius: 9999px; /* Esquinas redondeadas */
+  background-color: black; /* Color de fondo del rating */
+  color: white; /* Color del texto del rating */
+  transition: background-color 0.3s; /* Transición para el hover */
+}
+
+.movie-card__details {
+  display: flex; /* Flex para contenido interno */
+  flex-direction: row; /* Columna para el título y meta */
+  padding-left: 0.5rem; /* Espaciado interno */
+}
+
+.movie-card__meta-icon {
+  margin-right: 0.25rem; /* Espaciado derecho para el ícono */
+}

@@ -1,0 +1,116 @@
+/* Contenedor principal */
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+/* Menú lateral */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-self: space-between;
+  background-color: rgb(86, 108, 126);
+  color: white;
+  padding: 2rem;
+  width: 20%;
+  box-sizing: border-box;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  justify-content: center;
+  height: 5rem;
+  width: 5rem;
+}
+
+.sidebar-button {
+  margin-bottom: 2rem; /* Ajusta este margen según tu preferencia */
+  display: block; /* Asegura que el botón se comporte como un bloque */
+  text-align: center; /* Centra el texto del botón */
+  color: #1a1a1a;
+}
+
+button:hover {
+  border-color: #57f7ff;
+}
+
+/* Lista de navegación */
+.nav-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  gap: 0.5rem;
+  flex-grow: 0.5; /* Ocupa el espacio sobrante */
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.nav-list li {
+  width: 100%; /* Asegura que cada li ocupe todo el ancho del sidebar */
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+
+.nav-list a {
+  display: contents;
+  padding: 0.5rem 0;
+  color: inherit;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+}
+
+.nav-list a:hover {
+  text-decoration: underline;
+  color: #afaeae;
+}
+
+/* Contenido principal */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  box-sizing: border-box;
+  overflow-y: auto; /* Si hay mucho contenido, permitirá hacer scroll vertical */
+}
+
+/* Encabezado */
+.header {
+  background-color: #1e293b;
+  color: white;
+  display: flex;
+  padding: 1rem;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Contenido */
+.content {
+  padding: 1.5rem;
+  flex-grow: 1;
+}
+
+.content h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.content p {
+  margin-bottom: 1rem;
+}

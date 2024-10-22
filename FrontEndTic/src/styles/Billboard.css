@@ -1,0 +1,27 @@
+.nav-list a:hover {
+  text-decoration: underline;
+  color: #fc0505;
+}
+
+.nav-buttons {
+  display: flex; /* Utiliza flexbox */
+  flex-direction: column; /* Coloca los botones en una columna */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  height: 100vh; /* Asegúrate de que el contenedor ocupe toda la altura */
+  padding: 2rem; /* Espaciado interno opcional */
+  box-sizing: border-box; /* Incluye padding y border en el tamaño total */
+}
+
+.nav-buttons button {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  justify-content: center;
+  align-items: center;
+  background-color: #c1c1c1;
+  color: rgb(67, 67, 67);
+  cursor: pointer;
+  width: 100%;
+}
