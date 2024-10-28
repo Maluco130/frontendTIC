@@ -7,7 +7,7 @@ export default function MovieCard({
   ageRating = "13+",
 }) {
   return (
-    <div className="movie-card">
+    <button className="movie-card">
       <div className="movie-card__image-container">
         <img
           src={posterUrl}
@@ -20,6 +20,6 @@ export default function MovieCard({
         <h3 className="movie-card__title">{title}</h3>
       </div>
       <div className="movie-card__details movie-card__meta"></div>
-    </div>
+    </button>
   );
 }

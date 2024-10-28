@@ -1,17 +1,18 @@
 .movie-card {
   width: 200px; /* Ancho fijo de la tarjeta */
-  height: 350px;
+  height: 320px;
   border-radius: 0.5rem; /* Esquinas redondeadas */
-  border: 1px solid rgb(255, 255, 255); /* Borde */
+  border: 1px solid rgb(167, 167, 167); /* Borde */
   background-color: var(--card-bg); /* Color de fondo de la tarjeta */
   color: var(--card-text); /* Color del texto */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra */
   overflow: hidden; /* Para ocultar contenido desbordante */
+  padding: 0;
 }
 
 .movie-card:hover {
   box-shadow: 0 2px 4px rgb(255, 255, 255); /* Sombra al hacer hover */
-  border-color: white;
+  border-color: rgb(255, 255, 255);
 }
 
 .movie-card__image-container {
@@ -22,7 +23,7 @@
 .movie-card__image {
   width: 100%; /* Ancho completo */
   height: 100%; /* Altura completa */
-  object-fit: cover; /* Mantiene la proporción de la imagen */
+  object-fit: inherit; /* Mantiene la proporción de la imagen */
 }
 
 .movie-card__rating {

@@ -1,0 +1,54 @@
+/* Estilo global del cuerpo */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+/* Contenedor del login */
+.login-container {
+  background-color: rgb(86, 108, 126);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+/* Estilo del título */
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Etiquetas de los campos */
+.login-container label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Campos de texto y contraseña */
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Botón de envío */
+.login-container input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #1a1a1a;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Efecto hover en el botón */
+.login-container input[type="submit"]:hover {
+  border-color: #57f7ff;
+}
