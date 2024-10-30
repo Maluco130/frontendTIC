@@ -15,6 +15,13 @@
   width: 300px;
 }
 
+.login-container form {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Estilo del título */
 .login-container h2 {
   text-align: center;
@@ -40,7 +47,7 @@
 
 /* Botón de envío */
 .login-container input[type="submit"] {
-  width: 100%;
+  width: 60%;
   padding: 10px;
   background-color: #1a1a1a;
   color: white;
@@ -51,4 +58,17 @@
 /* Efecto hover en el botón */
 .login-container input[type="submit"]:hover {
   border-color: #57f7ff;
+}
+
+.login-container a {
+  color: #98d1ff;
+  text-decoration: none;
+}
+
+.change-options {
+  /* Tus estilos aquí */
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }

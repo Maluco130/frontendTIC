@@ -5,6 +5,7 @@ import "./App.css";
 import Home from "./pages/Home.jsx";
 import Billboard from "./pages/Billboard.jsx";
 import Login from "./pages/login.jsx";
+import Register from "./pages/Register.jsx"; // Asegúrate de que la ruta sea correcta
 import "./index.css";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Billboard />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );
