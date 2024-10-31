@@ -1,17 +1,20 @@
 .movie-card {
-  width: 200px; /* Ancho fijo de la tarjeta */
+  width: 200px;
   height: 320px;
-  border-radius: 0.5rem; /* Esquinas redondeadas */
-  border: 1px solid rgb(167, 167, 167); /* Borde */
-  background-color: var(--card-bg); /* Color de fondo de la tarjeta */
-  color: var(--card-text); /* Color del texto */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra */
-  overflow: hidden; /* Para ocultar contenido desbordante */
+  margin: 10px; /* Espacio alrededor de cada tarjeta */
+  border-radius: 0.5rem;
+  border: 1px solid rgb(167, 167, 167);
+  background-color: var(--card-bg);
+  color: var(--card-text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
   padding: 0;
+  transition: transform 0.2s;
 }
 
 .movie-card:hover {
-  box-shadow: 0 2px 4px rgb(255, 255, 255); /* Sombra al hacer hover */
+  transform: scale(1.05); /* Efecto hover */
+  box-shadow: 0 2px 4px rgb(255, 255, 255);
   border-color: rgb(255, 255, 255);
 }
 
