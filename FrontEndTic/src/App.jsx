@@ -6,7 +6,9 @@ import Home from "./pages/Home.jsx";
 import Billboard from "./pages/Billboard.jsx";
 import Login from "./pages/login.jsx";
 import Register from "./pages/register.jsx"; // Asegúrate de que la ruta sea correcta
+import MovieDetails from "./pages/MovieDetails.jsx";
 import "./index.css";
+
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
         <Route path="/" element={<Billboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/movie/:slug" element={<MovieDetails />} />
       </Routes>
     </Router>
   );

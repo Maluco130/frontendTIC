@@ -1,0 +1,100 @@
+/* General page layout */
+.page-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(86, 108, 126);
+    color: white;
+    padding: 2rem;
+    width: 20%;
+    box-sizing: border-box;
+  }
+  
+  /* Main content area */
+  .main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+  
+  .header {
+    background-color: #1e293b;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 2.5rem;
+    width: calc(100% - 20%);
+    position: fixed;
+    top: 0;
+    left: 20%;
+    z-index: 1000;
+    box-sizing: border-box;
+    max-height: 120px;
+  }
+  
+  /* Header title */
+  .header h1 {
+    font-weight: bold;
+    margin: 0;
+    font-size: 3.5rem !important; /* Forzamos el tamaño de la fuente */
+    flex-grow: 1;
+  }
+  
+  
+  /* Content padding to account for fixed header */
+  .content {
+    padding: 3.5rem 2rem 2rem;
+    flex-grow: 1;
+  }
+  
+  /* Extra-large Section subtitles */
+  .section-subtitle {
+    font-size: 3rem;
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Section descriptive texts */
+  .section-text {
+    font-size: 1.5rem;
+    color: #ccc;
+    margin-bottom: 1rem;
+  }
+  
+  /* Featured movies */
+  .movie-thumbnails {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .movie-thumbnail {
+    text-align: center;
+    max-width: 150px;
+  }
+  
+  .movie-thumbnail img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .promotion-card {
+    background-color: #333;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  

@@ -1,0 +1,89 @@
+/* Contenedor principal de la página de detalles de la película */
+.movie-details-page {
+  display: flex;
+  padding: 2rem;
+  align-items: flex-start;
+  background-color: #1c1c1c;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+/* Barra lateral */
+.sidebar {
+  width: 20%;
+  background-color: rgb(86, 108, 126);
+  color: white;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Contenedor de la información de la película */
+.movie-info-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  padding-top: 7rem; 
+  padding-left: 30rem;
+  margin-left: auto;
+}
+
+/* Imagen de la película (ajuste de tamaño y posición) */
+.movie-poster {
+  position: relative;
+  width: 480px; /* Incrementa el tamaño de la imagen */
+  flex-shrink: 0;
+}
+
+.movie-poster img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Botón de reproducción */
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4.5rem; /* Incrementa el tamaño del botón de reproducción */
+  color: #4a47ff;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px 40px; /* Aumenta el tamaño del botón para que esté en proporción */
+  border-radius: 50%;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.play-button:hover {
+  background: rgba(255, 99, 71, 0.7);
+}
+
+/* Información de la película */
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 600px;
+}
+
+.movie-info h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.movie-meta {
+  display: flex;
+  gap: 15px;
+  font-size: 1.2rem;
+  color: #b0b0b0;
+  margin: 10px 0;
+}
+
+.movie-description {
+  line-height: 1.5;
+  color: #ccc;
+  font-size: 1.2rem;
+}

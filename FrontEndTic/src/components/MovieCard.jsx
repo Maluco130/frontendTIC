@@ -1,13 +1,21 @@
+import { useNavigate } from 'react-router-dom';
 import "../styles/MovieCard.css";
 
 export default function MovieCard({
+  slug,    // Recibe el slug generado del título
   title = "Título de la Película",
-  posterUrl = "https://via.placeholder.com/200x300", // Placeholder si no hay URL válida
-  duration = "Duración no disponible",
+  posterUrl = "https://default-image-url.jpg",
+  duration = "N/A",
   ageRating = "N/A",
 }) {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/movie/${slug}`);  // Navega a la página de detalles usando el slug
+  };
+
   return (
-    <button className="movie-card">
+    <button className="movie-card" onClick={handleCardClick}>
       <div className="movie-card__image-container">
         <img
           src={posterUrl}
@@ -18,9 +26,8 @@ export default function MovieCard({
       </div>
       <div className="movie-card__details">
         <h3 className="movie-card__title">{title}</h3>
-        <p className="movie-card__duration">{duration}</p>
+        <p>{duration}</p>
       </div>
     </button>
   );
 }
-
