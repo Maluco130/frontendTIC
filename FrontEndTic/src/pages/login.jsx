@@ -1,49 +1,47 @@
 import "../styles/login_register.css";
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Importar useNavigate
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Header from "../components/Header"; // Importa el Header
 
 export default function Login() {
   const [formData, setFormData] = useState({
-    mail: '',
-    password: ''
+    mail: "",
+    password: "",
   });
-  const [errorMessage, setErrorMessage] = useState(''); // Estado para el mensaje de error
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
-      const response = await axios.post('http://localhost:8081/auth/login', formData, {
+      const response = await axios.post("http://localhost:8081/auth/login", formData, {
         headers: {
-          'Content-Type': 'application/json',
-        }
+          "Content-Type": "application/json",
+        },
       });
-  
-      console.log('Login exitoso:', response.data);
-  
-      // Redirigir al main en http://localhost:5173/
-      window.location.href = 'http://localhost:5173/';
-  
+
+      console.log("Login exitoso:", response.data);
+      window.location.href = "http://localhost:5173/";
     } catch (error) {
-      console.error('Error en el login:', error.response ? error.response.data : error.message);
-      setErrorMessage('Credenciales incorrectas. Por favor, intenta nuevamente.');
+      console.error("Error en el login:", error.response ? error.response.data : error.message);
+      setErrorMessage("Credenciales incorrectas. Por favor, intenta nuevamente.");
     }
   };
-  
 
   return (
-    <div className="login-page">
+    <div className="login-page no-sidebar">
+      <Header /> {/* Incluye el Header */}
       <div className="login-container">
-        <h2>Login</h2>
+        <h2>Iniciar secion</h2>
 
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">Email</label>

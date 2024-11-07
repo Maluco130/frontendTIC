@@ -1,13 +1,13 @@
 /* Home.css */
 
-/* Contenedor principal */
+/* Contenedor Principal */
 .page-container {
   min-height: 100vh;
   display: flex;
   flex-direction: row;
 }
 
-/* Menú lateral */
+/* Menú Lateral */
 .sidebar {
   position: fixed;
   top: 0;
@@ -15,21 +15,14 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: rgb(86, 108, 126);
+  background-color: rgb(86, 108, 126); /* Color celeste */
   color: white;
   padding: 2rem;
-  width: 20%; /* Fixed width for the sidebar */
+  width: 20%; /* Asegúrate de que este valor sea el mismo que el margen de .main-content */
   box-sizing: border-box;
 }
 
-/* Logo */
-.logo {
-  display: flex;
-  justify-content: center;
-  height: 5rem;
-  width: 5rem;
-}
-
+/* Botones y Navegación */
 .sidebar-button {
   margin-bottom: 2rem;
   display: block;
@@ -37,11 +30,11 @@
   color: #1a1a1a;
 }
 
-/* Lista de navegación */
 .nav-list {
   list-style-type: none;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 0.5rem;
   padding: 0;
@@ -57,10 +50,12 @@
 }
 
 .nav-list a {
-  display: contents;
+  display: block;
   padding: 0.5rem 0;
   color: inherit;
   text-decoration: none;
+  text-align: center;
+  width: 100%;
 }
 
 .nav-list a:hover {
@@ -68,93 +63,19 @@
   color: #afaeae;
 }
 
-/* Contenido principal */
+/* Contenido Principal de Home */
 .main-content {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  margin-left: 20%; /* Matches sidebar width */
+  margin-left: 20%; /* Coincide con el ancho del sidebar */
+  width: 80%;
   box-sizing: border-box;
   overflow-y: auto;
 }
 
-/* Encabezado (Header) */
-.header {
-  background-color: #1e293b;
-  color: white;
-  display: flex;
-  align-items: center;
-  padding: 1.2rem; /* Controlado para una altura moderada */
-  width: calc(100% - 20%);
-  position: fixed;
-  top: 0;
-  left: 20%;
-  z-index: 1000;
-  box-sizing: border-box;
-  max-height: 80px; /* Limita la altura máxima */
-}
-
-.header h1 {
-  font-weight: bold;
-  margin: 0;
-  font-size: 2.5rem;
-  flex-grow: 1;
-}
-
-/* Contenido (Main Content Area) */
+/* Espacio para el contenido en Home */
 .content {
-  padding: 3.5rem 2rem 2rem; /* Ajuste para evitar superposición con el encabezado */
+  padding: 3.5rem 2rem 2rem; /* Espacio adicional para que no se superponga con el header */
   flex-grow: 1;
-}
-
-/* Extra-large Section subtitles */
-.section-subtitle {
-  font-size: 3rem;
-  color: #ffffff;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-/* Section descriptive texts */
-.section-text {
-  font-size: 1.5rem;
-  color: #ccc;
-  margin-bottom: 1rem;
-}
-
-/* Featured movies */
-.movie-thumbnails {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.movie-thumbnail {
-  text-align: center;
-  max-width: 150px;
-}
-
-.movie-thumbnail img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.promotion-card {
-  background-color: #333;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
-/* Branch highlights */
-.branch-highlights ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.branch-highlights ul li {
-  margin-bottom: 0.5rem;
-}
-
-.content h3:first-of-type {
-  margin-top: 4rem; /* Ajusta el valor según el espacio que desees */
 }

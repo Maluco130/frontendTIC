@@ -1,32 +1,26 @@
-import { useNavigate } from 'react-router-dom';
 import "../styles/MovieCard.css";
 
 export default function MovieCard({
-  slug,    // Recibe el slug generado del título
   title = "Título de la Película",
-  posterUrl = "https://default-image-url.jpg",
-  duration = "N/A",
-  ageRating = "N/A",
+  posterUrl = "https://via.placeholder.com/200x300", 
+  duration = "Duración no disponible", 
+  age = "N/A", 
 }) {
-  const navigate = useNavigate();
-
-  const handleCardClick = () => {
-    navigate(`/movie/${slug}`);  // Navega a la página de detalles usando el slug
-  };
-
   return (
-    <button className="movie-card" onClick={handleCardClick}>
+    <button className="movie-card">
       <div className="movie-card__image-container">
         <img
           src={posterUrl}
           alt={`Póster de ${title}`}
           className="movie-card__image"
         />
-        <span className="movie-card__rating">{ageRating}</span>
+        <span className="movie-card__rating">{age}</span> 
       </div>
-      <div className="movie-card__details">
+      <div className="movie-card__overlay">
         <h3 className="movie-card__title">{title}</h3>
-        <p>{duration}</p>
+        <p className="movie-card__duration">
+          {duration} min
+        </p>
       </div>
     </button>
   );

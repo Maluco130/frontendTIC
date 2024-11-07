@@ -1,16 +1,16 @@
-import { useParams, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Header from "./Header"; // Import the reusable Header component
-import "../styles/MovieDetails.css";
+import { useParams, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Header from "../components/Header"; 
+import "../styles/MovieDetails.css"; 
 
 function MovieDetails() {
-  const { slug } = useParams(); 
+  const { slug } = useParams();
   const location = useLocation();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const title = location.state?.title || slug.replace(/-/g, ' ');
+  const title = location.state?.title || slug.replace(/-/g, " ");
 
   useEffect(() => {
     if (title) {
@@ -32,25 +32,22 @@ function MovieDetails() {
   if (!movie) return <p>No se encontró la película.</p>;
 
   return (
-    <div className="movie-details-page">
-      <Header /> {/* The header is placed at the top */}
+    <div className="movie-page-container">
+      {/* Encabezado */}
+      <Header /> {/* Incluye el componente Header */}
 
-      <div className="movie-details">
-        {/* Sidebar for function selection */}
-        <nav className="sidebar">
-          <h2>Selecciona tu Función</h2>
-          {/* Menú desplegable para seleccionar la función */}
-          <select className="dropdown">
-            <option value="">Selecciona una función</option>
-            <option value="funcion1">Función 1 - 2:00 PM</option>
-            <option value="funcion2">Función 2 - 5:00 PM</option>
-            <option value="funcion3">Función 3 - 8:00 PM</option>
-            {/* Añade más opciones de funciones según sea necesario */}
-          </select>
-        </nav>
+      {/* Menú Celeste */}
+      <nav className="sidebar">
+        <p className="select-cine-text">Seleccione una función</p>
+        <div className="nav-buttons">
+          <button className="cine-button">Función 1 - 2:00 PM</button>
+          <button className="cine-button">Función 2 - 5:00 PM</button>
+          <button className="cine-button">Función 3 - 8:00 PM</button>
+        </div>
+      </nav>
 
-        {/* Movie poster and info */}
-        <div className="movie-info-container">
+      {/* Contenido Principal */}
+      <div className="movie-info-container">
           <div className="movie-poster">
             <img src={movie.imageUrl} alt={`Poster de ${movie.title}`} />
             <a 
@@ -74,7 +71,6 @@ function MovieDetails() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
