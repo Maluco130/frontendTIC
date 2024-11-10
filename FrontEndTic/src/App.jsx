@@ -5,18 +5,22 @@ import "./App.css";
 import Home from "./pages/Home.jsx";
 import Billboard from "./pages/Billboard.jsx";
 import Login from "./pages/login.jsx";
-import Register from "./pages/Register.jsx"; // Asegúrate de que la ruta sea correcta
-import Seats from "./pages/Seats.jsx";
+import Register from "./pages/register.jsx"; // Asegúrate de que la ruta sea correcta
 import "./index.css";
+import MovieDetails from "./pages/MovieDetails";
+import Header from "./components/Header";
+import Seats from "./pages/Seats.jsx";
 
 function App() {
   return (
     <Router>
+      <Header />
       <Routes>
         <Route path="/" element={<Billboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/seats" element={<Seats />} />
+        <Route path="/movie/:slug" element={<MovieDetails />} />
+        <Route path="/Seats" element={<Seats />} />
       </Routes>
     </Router>
   );

@@ -2,9 +2,9 @@ import "../styles/MovieCard.css";
 
 export default function MovieCard({
   title = "Título de la Película",
-  posterUrl = "https://movieprodportalstoweb.blob.core.windows.net/movieposters/venomelultimobaile.jpg",
-  duration = "2h 30min",
-  ageRating = "13+",
+  posterUrl = "https://via.placeholder.com/200x300", 
+  duration = "Duración no disponible", 
+  age = "N/A", 
 }) {
   return (
     <button className="movie-card">
@@ -14,12 +14,14 @@ export default function MovieCard({
           alt={`Póster de ${title}`}
           className="movie-card__image"
         />
-        <span className="movie-card__rating">{ageRating}</span>
+        <span className="movie-card__rating">{age}</span> 
       </div>
-      <div className="movie-card__details">
+      <div className="movie-card__overlay">
         <h3 className="movie-card__title">{title}</h3>
+        <p className="movie-card__duration">
+          {duration} min
+        </p>
       </div>
-      <div className="movie-card__details movie-card__meta"></div>
     </button>
   );
 }

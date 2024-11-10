@@ -1,5 +1,4 @@
 import "../styles/Home.css";
-import Logo from "../images/WhatsApp Image 2024-10-19 at 19.50.34.png";
 import { useNavigate } from "react-router-dom";
 
 function Home({ menuContent, pageContent }) {
@@ -15,19 +14,13 @@ function Home({ menuContent, pageContent }) {
       <nav className="sidebar">
         <button
           className="nav-toggle"
-          onClick={() => handleSelect("/login")} // Cambia "/cine1" al path deseado
+          onClick={() => handleSelect("/login")}
         >
           Login
         </button>
         {menuContent}
       </nav>
       <div className="main-content">
-        <header className="header">
-          <h1>What The Fun</h1>
-          <div className="logo">
-            <img src={Logo} alt="Logo" />
-          </div>
-        </header>
         <main className="content">{pageContent}</main>
       </div>
     </div>

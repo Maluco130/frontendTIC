@@ -1,11 +1,13 @@
-/* Contenedor principal */
+/* Home.css */
+
+/* Contenedor Principal */
 .page-container {
   min-height: 100vh;
   display: flex;
   flex-direction: row;
 }
 
-/* Menú lateral */
+/* Menú Lateral */
 .sidebar {
   position: fixed;
   top: 0;
@@ -13,42 +15,28 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-self: space-between;
-  background-color: rgb(86, 108, 126);
+  background-color: rgb(86, 108, 126); /* Color celeste */
   color: white;
   padding: 2rem;
   width: 20%; /* Asegúrate de que este valor sea el mismo que el margen de .main-content */
   box-sizing: border-box;
 }
 
-/* Logo */
-.logo {
-  display: flex;
-  justify-content: center;
-  height: 5rem;
-  width: 5rem;
-}
-
+/* Botones y Navegación */
 .sidebar-button {
-  margin-bottom: 2rem; /* Ajusta este margen según tu preferencia */
-  display: block; /* Asegura que el botón se comporte como un bloque */
-  text-align: center; /* Centra el texto del botón */
+  margin-bottom: 2rem;
+  display: block;
+  text-align: center;
   color: #1a1a1a;
 }
 
-button:hover {
-  border-color: #ffffff;
-}
-
-/* Lista de navegación */
 .nav-list {
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centra verticalmente */
-  align-items: center; /* Centra horizontalmente */
+  justify-content: center;
+  align-items: center;
   gap: 0.5rem;
-  flex-grow: 0.5; /* Ocupa el espacio sobrante */
   padding: 0;
   margin: 0;
   width: 100%;
@@ -56,15 +44,13 @@ button:hover {
 }
 
 .nav-list li {
-  width: 100%; /* Asegura que cada li ocupe todo el ancho del sidebar */
+  width: 100%;
   text-align: center;
-  justify-content: center;
-  align-items: center;
   margin: 1rem;
 }
 
 .nav-list a {
-  display: contents;
+  display: block;
   padding: 0.5rem 0;
   color: inherit;
   text-decoration: none;
@@ -77,7 +63,7 @@ button:hover {
   color: #afaeae;
 }
 
-/* Contenido principal */
+/* Contenido Principal de Home */
 .main-content {
   flex-grow: 1;
   display: flex;
@@ -88,34 +74,8 @@ button:hover {
   overflow-y: auto;
 }
 
-/* Encabezado */
-.header {
-  background-color: #1e293b;
-  color: white;
-  display: flex;
-  padding: 1rem;
-  text-align: center;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header h1 {
-  font-weight: bold;
-  margin: 0;
-}
-
-/* Contenido */
-.main-content .content {
-  padding: 5rem;
+/* Espacio para el contenido en Home */
+.content {
+  padding: 3.5rem 2rem 2rem; /* Espacio adicional para que no se superponga con el header */
   flex-grow: 1;
-}
-
-.content h2 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.content p {
-  margin-bottom: 1rem;
 }

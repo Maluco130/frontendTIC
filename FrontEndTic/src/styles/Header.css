@@ -1,0 +1,43 @@
+/* Header.css */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1e293b;
+  color: white;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  left: 20%;
+  width: calc(100% - 20%);
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+.header h1 {
+  font-weight: bold;
+  margin: 0;
+  font-size: 3.5rem;
+  flex-grow: 1;
+  text-align: center;
+}
+
+/* Logo en el Header */
+.logo {
+  display: flex;
+  justify-content: center;
+  height: 5rem;
+  width: 5rem;
+}
+
+.logo img {
+  max-height: 100%; /* Ajusta la altura máxima al 100% del contenedor */
+  max-width: 100%; /* Ajusta el ancho máximo al 100% del contenedor */
+  object-fit: contain; /* Asegura que la imagen no se recorte */
+}
+
+.no-sidebar .header {
+  width: 100%; /* Hace que el header ocupe todo el ancho de la página */
+  left: 0;
+}
