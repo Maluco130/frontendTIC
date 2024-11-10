@@ -8,7 +8,7 @@ function Register() {
   const [formData, setFormData] = useState({
     name: "",
     mail: "",
-    cedula: "", // Agrega el campo de cédula
+    cedula: "", 
     password: "",
   });
 
