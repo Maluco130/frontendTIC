@@ -14,13 +14,13 @@ import Seats from "./pages/Seats.jsx";
 function App() {
   return (
     <Router>
-      <Header /> 
+      <Header />
       <Routes>
         <Route path="/" element={<Billboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/movie/:slug" element={<MovieDetails />} />
-        <Route path="/Seats" element={<Seats />}/>
+        <Route path="/Seats" element={<Seats />} />
       </Routes>
     </Router>
   );

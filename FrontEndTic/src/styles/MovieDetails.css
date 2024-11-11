@@ -12,8 +12,8 @@
 
 /* Información de la película */
 .movie-info-container {
-  margin-top: 8%;
-  padding-left: 18%;
+  margin-top: 7%;
+  padding-left: 22rem;
   display: flex;
   align-items: flex-start;
   width: 100%;
@@ -24,7 +24,7 @@
 /* Imagen de la película */
 .movie-poster {
   position: relative;
-  width: 30%;
+  width: 26%;
   flex-shrink: 0;
 }
 
@@ -175,3 +175,4 @@
   background-color: #09085e;
   color: white;
 }
+

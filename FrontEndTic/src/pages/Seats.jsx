@@ -1,7 +1,7 @@
 import Home from "./Home.jsx";
 import "../styles/Seats.css";
 import { useState } from "react";
- 
+
 const generarAsientos = () => {
   const asientos = [];
   const filas = [
@@ -21,7 +21,7 @@ const generarAsientos = () => {
     "N",
     "O  ",
   ];
- 
+
   filas.forEach((fila, filaIndex) => {
     for (let i = 1; i <= 10; i++) {
       asientos.push({
@@ -32,24 +32,24 @@ const generarAsientos = () => {
       });
     }
   });
- 
+
   return asientos;
 };
- 
+
 function Seats() {
   const [asientos, setAsientos] = useState(generarAsientos());
   const [asientosSeleccionados, setAsientosSeleccionados] = useState([]);
- 
+
   const [selectedButton, setSelectedButton] = useState(null);
- 
+
   // Función para manejar la selección de un botón
   const handleSelect = (buttonIndex) => {
     setSelectedButton(buttonIndex); // Cambia el botón seleccionado
   };
- 
+
   const seleccionarAsiento = (asiento) => {
     if (asiento.estado === "ocupado") return;
- 
+
     const nuevosAsientos = asientos.map((a) =>
       a.id === asiento.id
         ? {
@@ -58,13 +58,13 @@ function Seats() {
           }
         : a
     );
- 
+
     setAsientos(nuevosAsientos);
     setAsientosSeleccionados(
       nuevosAsientos.filter((a) => a.estado === "seleccionado")
     );
   };
- 
+
   const menu = (
     <div className="nav-buttons">
       <button
@@ -73,14 +73,14 @@ function Seats() {
       >
         Cine 1
       </button>
- 
+
       <button
         className={selectedButton === 2 ? "selected" : ""}
         onClick={() => handleSelect(2)}
       >
         Cine 2
       </button>
- 
+
       <button
         className={selectedButton === 3 ? "selected" : ""}
         onClick={() => handleSelect(3)}
@@ -89,7 +89,7 @@ function Seats() {
       </button>
     </div>
   );
- 
+
   const content = (
     <div className="container">
       <div className="content">
@@ -157,7 +157,5 @@ function Seats() {
   );
   return <Home menuContent={menu} pageContent={content} />;
 }
- 
+
 export default Seats;
- 
- 

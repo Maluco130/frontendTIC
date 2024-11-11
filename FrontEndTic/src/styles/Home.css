@@ -5,7 +5,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: row;
-  position: relative; /* Asegura que el contenedor principal esté en el flujo normal */
+  position: relative; 
+  overflow-x: hidden;
 }
 
 /* Menú Lateral */
@@ -97,6 +98,11 @@
 .main-content {
   flex-grow: 1;
   overflow-y: auto; 
+  overflow-x: hidden;
   max-height: 100vh; 
   padding: 3rem 2rem;
+}
+
+body {
+  overflow-x: hidden;
 }
