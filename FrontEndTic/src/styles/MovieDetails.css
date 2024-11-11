@@ -6,49 +6,14 @@
   background-color: #1c1c1c;
   color: #ffffff;
   font-family: Arial, sans-serif;
-}
-
-/* Menú lateral */
-.sidebar {
-  width: 20%;
-  background-color: rgb(86, 108, 126);
-  color: white;
-  padding: 2rem;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-/* Selector de Día */
-.schedule-dropdown {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  color: white;
-}
-
-.schedule-dropdown label {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #e0e0e0;
-}
-
-.schedule-dropdown select {
-  padding: 0.5rem;
-  font-size: 1rem;
-  border-radius: 4px;
-  border: none;
-  outline: none;
-  background-color: #2c3e50;
-  color: white;
+  overflow-y: hidden; 
+  height: 100vh;
 }
 
 /* Información de la película */
 .movie-info-container {
-  margin-top: 160px; /* Aumenta el margen superior para que el contenido esté más abajo */
-  padding-left: 0rem;
-  padding-right: 2rem;
+  margin-top: 8%;
+  padding-left: 18%;
   display: flex;
   align-items: flex-start;
   width: 100%;
@@ -59,7 +24,7 @@
 /* Imagen de la película */
 .movie-poster {
   position: relative;
-  width: 480px;
+  width: 30%;
   flex-shrink: 0;
 }
 
@@ -76,18 +41,17 @@
   transform: translate(-50%, -50%);
   font-size: 4.5rem;
   color: #4a47ff;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0);
   padding: 20px 40px;
   border-radius: 50%;
   text-decoration: none;
-  transition: background 0.3s;
 }
 
 .play-button:hover {
-  background: rgba(255, 99, 71, 0.7);
+  background: rgba(0, 0, 0, 0.5);
 }
 
-/* Información detallada de la película */
+
 .movie-info {
   display: flex;
   flex-direction: column;
@@ -97,8 +61,8 @@
 }
 
 .movie-info h1 {
-  font-size: 3rem;
-  margin: 0;
+  font-size: 2.5rem;
+  margin-top: -6%;
 }
 
 .movie-meta {
@@ -106,36 +70,94 @@
   gap: 15px;
   font-size: 1.4rem;
   color: #b0b0b0;
-  margin: 10px 0;
 }
 
 .movie-description {
   line-height: 1.5;
   color: #ccc;
-  font-size: 1.75rem;
+  font-size: 1.7rem;
 }
 
+/* Menú lateral */
+.sidebar {
+  width: 20%;
+  background-color: rgb(86, 108, 126);
+  color: white;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 
-.day-select {
-  padding: 8px;
+/* Contenedor de selección de día */
+.day-select-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem; /* Espaciado adicional */
+}
+
+/* Estilo para el desplegable de día */
+.day-dropdown {
+  appearance: none; /* Oculta el estilo por defecto */
+  padding: 10px;
   font-size: 1rem;
-  margin-bottom: 1rem;
-  width: 100%;
-  background-color: #f0f0f0;
-  border: none;
-  color: #333;
   border-radius: 4px;
-  outline: none;
+  background-color: #1e293b; /* Mismo fondo que los botones */
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-right: 30px; /* Espacio para la flecha */
 }
 
-.day-select:focus {
-  outline: 2px solid #4a47ff;
+/* Flecha en el desplegable */
+.day-dropdown::after {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: white;
+  background-color: #1e293b;
+  pointer-events: none;
 }
 
+.day-dropdown:hover {
+  background-color: #1e293b; /* Color de fondo al pasar el cursor */
+}
+
+/* Contenedor de selección de función */
+.function-select-container {
+  margin-top: 0rem; 
+}
+
+/* Texto de selección de función */
+.select-cine-text {
+  font-size: 1.3rem;
+  color: #e0e0e0;
+  margin-bottom: 0;
+  text-align: center; 
+}
+
+/* Mensaje sin funciones */
+.no-functions-message {
+  font-size: 1.3rem;
+  color: #e0e0e0;
+  margin-bottom: 0;
+  text-align: center; 
+}
+
+/* Botones de funciones */
 .nav-buttons {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-top: -13rem; 
 }
 
 .cine-button {
@@ -146,8 +168,10 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
+  text-align: left; /* Alineación para acomodar información adicional */
 }
 
 .cine-button:hover {
-  background-color: #3a37cc;
+  background-color: #09085e;
+  color: white;
 }

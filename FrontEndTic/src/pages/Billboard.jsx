@@ -20,7 +20,7 @@ function Billboard() {
         `http://localhost:8081/billboard/branch/${id}`
       );
       if (response.status === 200) {
-        console.log("API response:", response.data); // Verifica la respuesta aquí
+        console.log("API response:", response.data); 
         setMovies(response.data);
       } else {
         console.error("Error al obtener la cartelera");
