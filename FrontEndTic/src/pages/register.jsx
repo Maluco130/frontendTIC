@@ -8,7 +8,7 @@ function Register() {
   const [formData, setFormData] = useState({
     name: "",
     mail: "",
-    cedula: "", 
+    idUs: "", // Cambiado de cedula a idUs
     password: "",
   });
 
@@ -34,7 +34,8 @@ function Register() {
       });
 
       console.log("Registro exitoso:", response.data);
-      window.location.href = "http://localhost:5173/";
+      localStorage.setItem("userName", formData.name); 
+      navigate("/");
     } catch (error) {
       console.error("Error en el registro:", error.response ? error.response.data : error.message);
       if (error.response && error.response.status === 409) {
@@ -72,13 +73,13 @@ function Register() {
             required
           />
 
-          {/* Campo de Cédula */}
-          <label htmlFor="cedula">Cédula</label>
+          {/* Campo de Cédula, ahora se almacena en `idUs` */}
+          <label htmlFor="idUs">Cédula</label>
           <input
             type="text"
-            id="cedula"
-            name="cedula"
-            value={formData.cedula}
+            id="idUs"
+            name="idUs" // Cambiado a `idUs`
+            value={formData.idUs} // Cambiado a `idUs`
             onChange={handleChange}
             required
           />

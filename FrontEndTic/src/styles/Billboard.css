@@ -1,16 +1,28 @@
+/* Billboard.css */
+
 .nav-list a:hover {
   text-decoration: underline;
   color: #fc0505;
 }
 
+.nav-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+  margin-top: 6rem;
+}
+
 .nav-buttons {
-  display: flex; /* Utiliza flexbox */
-  flex-direction: column; /* Coloca los botones en una columna */
-  justify-content: center; /* Centra verticalmente */
-  align-items: center; /* Centra horizontalmente */
-  height: 100vh; /* Asegúrate de que el contenedor ocupe toda la altura */
-  padding: 2rem; /* Espaciado interno opcional */
-  box-sizing: border-box; /* Incluye padding y border en el tamaño total */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 .nav-buttons button {
@@ -26,24 +38,36 @@
   width: 100%;
 }
 
+/* Ajuste para el botón de sucursal seleccionado */
+.cine-button.selected {
+  background-color: #09085e; /* Color de selección azul oscuro */
+  color: white;
+}
+
+.cine-button:hover {
+  background-color: #b0b0b0; /* Color de hover gris */
+}
+
 .movies-container {
   position: absolute;
-  top: 100px; /* Ajusta según la altura de la tira azul */
-  left: 20%; /* Ajusta según el ancho del menú celeste */
+  top: 10%;
+  left: 20%;
   right: 0;
   bottom: 0;
   display: flex;
-  flex-wrap: wrap; /* Permite que las películas se distribuyan en varias filas */
-  align-items: flex-start; /* Alinea las películas en la parte superior del contenedor */
-  justify-content: flex-start; /* Alinea las películas a la izquierda del contenedor */
-  padding: 1rem; /* Ajusta el espaciado interno según prefieras */
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 1rem;
   box-sizing: border-box;
-  gap: 1rem; /* Espacio entre las películas */
+  gap: 1rem;
+  overflow-y: auto; 
 }
+
 .page-container {
   display: flex;
-  min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
-  width: 100vw; /* Ocupa todo el ancho de la pantalla */
+  min-height: 100vh;
+  width: 100vw;
   overflow: hidden;
   flex-direction: row;
 }
@@ -51,6 +75,15 @@
 .placeholder-image {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: cover;
   border-radius: 0;
+  transform: scale(1.1); 
+  margin-top: -1rem;
+}
+
+.main-content {
+  flex-grow: 1;
+  overflow-y: auto; 
+  max-height: 100vh; 
+  padding: 3rem 2rem;
 }

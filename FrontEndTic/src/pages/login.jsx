@@ -6,10 +6,12 @@ import Header from "../components/Header"; // Importa el Header
 
 export default function Login() {
   const [formData, setFormData] = useState({
+    name: "",
     mail: "",
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +32,11 @@ export default function Login() {
       });
 
       console.log("Login exitoso:", response.data);
-      window.location.href = "http://localhost:5173/";
+
+      // Guarda tanto el nombre como el correo en `localStorage`
+      localStorage.setItem("userName", formData.name); // Guarda el nombre ingresado
+      localStorage.setItem("userEmail", formData.mail); // Guarda el correo ingresado
+      navigate("/"); // Redirigir a la página principal
     } catch (error) {
       console.error("Error en el login:", error.response ? error.response.data : error.message);
       setErrorMessage("Credenciales incorrectas. Por favor, intenta nuevamente.");
@@ -41,9 +47,19 @@ export default function Login() {
     <div className="login-page no-sidebar">
       <Header /> {/* Incluye el Header */}
       <div className="login-container">
-        <h2>Iniciar secion</h2>
+        <h2>Iniciar sesión</h2>
 
         <form onSubmit={handleSubmit}>
+          <label htmlFor="name">Nombre</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+
           <label htmlFor="email">Email</label>
           <input
             type="email"
