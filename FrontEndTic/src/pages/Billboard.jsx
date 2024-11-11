@@ -16,7 +16,9 @@ function Billboard() {
     setSelectedCine(id);
     setMovies([]);
     try {
-      const response = await axios.get(`http://localhost:8081/billboard/branch/${id}`);
+      const response = await axios.get(
+        `http://localhost:8081/billboard/branch/${id}`
+      );
       if (response.status === 200) {
         console.log("API response:", response.data); // Verifica la respuesta aquí
         setMovies(response.data);
@@ -42,7 +44,9 @@ function Billboard() {
       ].map((cine) => (
         <button
           key={cine.id}
-          className={`cine-button ${selectedCine === cine.id ? "selected" : ""}`}
+          className={`cine-button ${
+            selectedCine === cine.id ? "selected" : ""
+          }`}
           onClick={() => handleCineSelection(cine.id)}
         >
           {cine.name}
@@ -54,7 +58,11 @@ function Billboard() {
   const content = (
     <div className="movies-container">
       {selectedCine === null ? (
-        <img src={PlaceholderImage} alt="Selecciona una sucursal" className="placeholder-image" />
+        <img
+          src={PlaceholderImage}
+          alt="Selecciona una sucursal"
+          className="placeholder-image"
+        />
       ) : movies.length > 0 ? (
         movies.map((movie) => (
           <Link
