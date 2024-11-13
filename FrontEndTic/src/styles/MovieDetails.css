@@ -6,14 +6,14 @@
   background-color: #1c1c1c;
   color: #ffffff;
   font-family: Arial, sans-serif;
-  overflow-y: hidden; 
+  overflow-y: hidden;
   height: 100vh;
 }
 
 /* Información de la película */
 .movie-info-container {
   margin-top: 8%;
-  padding-left: 18%;
+  padding-left: 20%;
   display: flex;
   align-items: flex-start;
   width: 100%;
@@ -26,6 +26,7 @@
   position: relative;
   width: 30%;
   flex-shrink: 0;
+  padding: 2%;
 }
 
 .movie-poster img {
@@ -50,7 +51,6 @@
 .play-button:hover {
   background: rgba(0, 0, 0, 0.5);
 }
-
 
 .movie-info {
   display: flex;
@@ -133,7 +133,7 @@
 
 /* Contenedor de selección de función */
 .function-select-container {
-  margin-top: 0rem; 
+  margin-top: 0rem;
 }
 
 /* Texto de selección de función */
@@ -141,7 +141,7 @@
   font-size: 1.3rem;
   color: #e0e0e0;
   margin-bottom: 0;
-  text-align: center; 
+  text-align: center;
 }
 
 /* Mensaje sin funciones */
@@ -149,7 +149,7 @@
   font-size: 1.3rem;
   color: #e0e0e0;
   margin-bottom: 0;
-  text-align: center; 
+  text-align: center;
 }
 
 /* Botones de funciones */
@@ -157,7 +157,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: -13rem; 
+  margin-top: -13rem;
 }
 
 .cine-button {
