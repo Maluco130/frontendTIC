@@ -2,7 +2,7 @@ import { useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "../components/Header";
-import Seats from "./Seats"; // Importa el componente Seats
+import Seats from "./Seats";
 import "../styles/MovieDetails.css";
 
 function MovieDetails() {
@@ -10,9 +10,10 @@ function MovieDetails() {
   const location = useLocation();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [selectedDay, setSelectedDay] = useState(""); // Día seleccionado para funciones
-  const [functions, setFunctions] = useState([]); // Lista de funciones para el día seleccionado
-  const [showSeatsModal, setShowSeatsModal] = useState(false); // Estado para el modal
+  const [selectedDay, setSelectedDay] = useState(""); 
+  const [functions, setFunctions] = useState([]); 
+  const [showSeatsModal, setShowSeatsModal] = useState(false); 
+  const [selectedFunctionId, setSelectedFunctionId] = useState(null); // Cambio aquí
   const title = location.state?.title || slug.replace(/-/g, " ");
 
   // Cargar detalles de la película
@@ -49,7 +50,9 @@ function MovieDetails() {
     }
   }, [selectedDay, title]);
 
-  const openSeatsModal = () => {
+  const openSeatsModal = (idFun) => {
+    console.log("Opening modal with function ID:", idFun);
+    setSelectedFunctionId(idFun); // Asegúrate de que esta es la función correcta para configurar el estado
     setShowSeatsModal(true); // Muestra el modal
   };
 
@@ -88,7 +91,7 @@ function MovieDetails() {
                 <button
                   key={index}
                   className="cine-button"
-                  onClick={openSeatsModal} // Abre el modal al hacer clic
+                  onClick={() => openSeatsModal(func.idFun)} 
                 >
                   {func.startTime.slice(0, 5)} - {func.endTime.slice(0, 5)} |{" "}
                   {func.projectionRoom.type}
@@ -134,7 +137,7 @@ function MovieDetails() {
             <button className="close-button" onClick={closeSeatsModal}>
               X
             </button>
-            <Seats /> {/* Muestra el componente de selección de asientos */}
+            <Seats idFun={selectedFunctionId} /> {/* Asegúrate de pasar el valor */}
           </div>
         </div>
       )}

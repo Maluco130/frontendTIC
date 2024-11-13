@@ -1,161 +1,170 @@
-import Home from "./Home.jsx";
 import "../styles/Seats.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const generarAsientos = () => {
+const generarAsientos = (reservedSeats = []) => {
   const asientos = [];
-  const filas = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O  ",
-  ];
+  const totalAsientos = 150;
 
-  filas.forEach((fila, filaIndex) => {
-    for (let i = 1; i <= 10; i++) {
-      asientos.push({
-        id: filaIndex * 10 + i,
-        fila,
-        numero: i,
-        estado: Math.random() > 0.8 ? "ocupado" : "disponible",
-      });
-    }
-  });
+  for (let i = 1; i <= totalAsientos; i++) {
+    asientos.push({
+      id: i,
+      numero: i,
+      estado: reservedSeats.includes(i) ? "ocupado" : "disponible",
+    });
+  }
 
   return asientos;
 };
 
-function Seats() {
+function Seats({ idFun }) {
+  const navigate = useNavigate();
   const [asientos, setAsientos] = useState(generarAsientos());
   const [asientosSeleccionados, setAsientosSeleccionados] = useState([]);
+  const [confirmacion, setConfirmacion] = useState(null); // Estado para la confirmación
 
-  const [selectedButton, setSelectedButton] = useState(null);
+  useEffect(() => {
+    const fetchReservedSeats = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8081/seats/reserved/fun/${idFun}`);
+        const reservedSeats = response.data;
+        setAsientos(generarAsientos(reservedSeats));
+      } catch (error) {
+        console.error("Error al obtener los asientos reservados:", error);
+        setAsientos(generarAsientos()); 
+      }
+    };
 
-  // Función para manejar la selección de un botón
-  const handleSelect = (buttonIndex) => {
-    setSelectedButton(buttonIndex); // Cambia el botón seleccionado
-  };
+    if (idFun) fetchReservedSeats();
+  }, [idFun]);
 
   const seleccionarAsiento = (asiento) => {
     if (asiento.estado === "ocupado") return;
 
     const nuevosAsientos = asientos.map((a) =>
       a.id === asiento.id
-        ? {
-            ...a,
-            estado: a.estado === "seleccionado" ? "disponible" : "seleccionado",
-          }
+        ? { ...a, estado: a.estado === "seleccionado" ? "disponible" : "seleccionado" }
         : a
     );
 
     setAsientos(nuevosAsientos);
-    setAsientosSeleccionados(
-      nuevosAsientos.filter((a) => a.estado === "seleccionado")
-    );
+    setAsientosSeleccionados(nuevosAsientos.filter((a) => a.estado === "seleccionado"));
   };
 
-  const menu = (
-    <div className="nav-buttons">
-      <button
-        className={selectedButton === 1 ? "selected" : ""}
-        onClick={() => handleSelect(1)}
-      >
-        Cine 1
-      </button>
+  const confirmarReserva = async () => {
+    const authToken = localStorage.getItem("authToken");
+    if (!authToken) {
+      console.error("No se encontró un token de autenticación.");
+      return;
+    }
 
-      <button
-        className={selectedButton === 2 ? "selected" : ""}
-        onClick={() => handleSelect(2)}
-      >
-        Cine 2
-      </button>
+    const seatsNumberToReserve = asientosSeleccionados.map((asiento) => asiento.numero);
+    const reservaData = {
+      functionId: idFun,
+      seatsNumberToReserve: seatsNumberToReserve,
+    };
 
-      <button
-        className={selectedButton === 3 ? "selected" : ""}
-        onClick={() => handleSelect(3)}
-      >
-        Cine 3
-      </button>
-    </div>
-  );
+    try {
+      const response = await axios.post("http://localhost:8081/movies/reserve", reservaData, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${authToken}`,
+        },
+      });
 
-  const content = (
+      console.log("Reserva exitosa:", response.data);
+      setConfirmacion(seatsNumberToReserve); // Muestra la confirmación con los asientos reservados
+    } catch (error) {
+      console.error("Error al realizar la reserva:", error.response ? error.response.data : error.message);
+    }
+  };
+
+  const volverInicio = () => {
+    navigate("/");
+  };
+
+  return (
     <div className="container">
       <div className="content">
-        <div className="title">
-          <h2>Screen</h2>
-          <h2>_________________________________</h2>
-        </div>
-        <div className="seat-grid">
-          {asientos.map((asiento) => (
-            <button
-              key={asiento.id}
-              className={`seat ${
-                asiento.estado === "ocupado"
-                  ? "occupied"
-                  : asiento.estado === "seleccionado"
-                  ? "selected"
-                  : "available"
-              }`}
-              onClick={() => seleccionarAsiento(asiento)}
-              disabled={asiento.estado === "ocupado"}
-              aria-label={`Asiento ${asiento.fila}${asiento.numero}, ${asiento.estado}`}
-            >
-              {asiento.numero}
-            </button>
-          ))}
-        </div>
-        <div className="legend">
-          <div className="legend-item">
-            <div className="legend-color selected"></div>
-            <span>Seleccionado</span>
+        {/* Solo muestra el título "Screen" si no hay confirmación */}
+        {!confirmacion && (
+          <div className="title">
+            <h1>Screen</h1>
+            <h2>________________________________________________</h2>
           </div>
-          <div className="legend-item">
-            <div className="legend-color available"></div>
-            <span>Disponible</span>
-          </div>
-          <div className="legend-item">
-            <div className="legend-color occupied"></div>
-            <span>Ocupado</span>
-          </div>
-        </div>
-      </div>
-      <div className="footer">
-        <h3 className="selected-title">Asientos seleccionados:</h3>
-        {asientosSeleccionados.length > 0 ? (
-          <ul className="selected-list">
-            {asientosSeleccionados.map((asiento) => (
-              <li key={asiento.id}>
-                Fila {asiento.fila}, Asiento {asiento.numero}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="no-selection">No has seleccionado ningún asiento.</p>
         )}
-        <button
-          className={`confirm-button ${
-            asientosSeleccionados.length === 0 ? "disabled" : "active"
-          }`}
-          disabled={asientosSeleccionados.length === 0}
-        >
-          Confirmar selección
-        </button>
+        
+        {confirmacion ? (
+          <div className="confirmation-message">
+            <h2>¡Reservaste exitosamente!</h2>
+            <p>Asientos reservados: {confirmacion.join(", ")}</p>
+            <button className="return-button" onClick={volverInicio}>
+              Volver al inicio
+            </button>
+          </div>
+        ) : (
+          <div className="seats-and-legend">
+            <div className="seat-grid">
+              {asientos.map((asiento) => (
+                <button
+                  key={asiento.id}
+                  className={`seat ${
+                    asiento.estado === "ocupado"
+                      ? "occupied"
+                      : asiento.estado === "seleccionado"
+                      ? "selected"
+                      : "available"
+                  }`}
+                  onClick={() => seleccionarAsiento(asiento)}
+                  disabled={asiento.estado === "ocupado"}
+                  aria-label={`Asiento ${asiento.numero}, ${asiento.estado}`}
+                >
+                  {asiento.numero}
+                </button>
+              ))}
+            </div>
+
+            <div className="legend-and-confirm">
+              <div className="legend">
+                <div className="legend-item">
+                  <div className="legend-color selected"></div>
+                  <span>Seleccionado</span>
+                </div>
+                <div className="legend-item">
+                  <div className="legend-color available"></div>
+                  <span>Disponible</span>
+                </div>
+                <div className="legend-item">
+                  <div className="legend-color occupied"></div>
+                  <span>Ocupado</span>
+                </div>
+              </div>
+              <div className="footer">
+                <h3 className="selected-title">Asientos seleccionados:</h3>
+                {asientosSeleccionados.length > 0 ? (
+                  <ul className="selected-list">
+                    {asientosSeleccionados.map((asiento) => (
+                      <li key={asiento.id}>Asiento {asiento.numero}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="no-selection">Selecciona algún asiento.</p>
+                )}
+                <button
+                  className={`confirm-button ${asientosSeleccionados.length === 0 ? "disabled" : "active"}`}
+                  disabled={asientosSeleccionados.length === 0}
+                  onClick={confirmarReserva}
+                >
+                  Confirmar selección
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
-  return <Home menuContent={menu} pageContent={content} />;
 }
 
 export default Seats;

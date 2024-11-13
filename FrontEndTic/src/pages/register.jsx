@@ -2,13 +2,13 @@ import "../styles/login_register.css";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header"; // Importa el Header
+import Header from "../components/Header";
 
 function Register() {
   const [formData, setFormData] = useState({
     name: "",
     mail: "",
-    idUs: "", // Cambiado de cedula a idUs
+    idUs: "",
     password: "",
   });
 
@@ -34,7 +34,11 @@ function Register() {
       });
 
       console.log("Registro exitoso:", response.data);
-      localStorage.setItem("userName", formData.name); 
+
+      // Guarda el token de autenticación en `localStorage`
+      localStorage.setItem("authToken", response.data.token);
+
+      localStorage.setItem("userName", formData.name);
       navigate("/");
     } catch (error) {
       console.error("Error en el registro:", error.response ? error.response.data : error.message);
@@ -48,7 +52,7 @@ function Register() {
 
   return (
     <div className="login-page no-sidebar">
-      <Header /> {/* Incluye el Header */}
+      <Header />
       <div className="login-container">
         <h2>Registrarse</h2>
 
@@ -73,13 +77,12 @@ function Register() {
             required
           />
 
-          {/* Campo de Cédula, ahora se almacena en `idUs` */}
           <label htmlFor="idUs">Cédula</label>
           <input
             type="text"
             id="idUs"
-            name="idUs" // Cambiado a `idUs`
-            value={formData.idUs} // Cambiado a `idUs`
+            name="idUs"
+            value={formData.idUs}
             onChange={handleChange}
             required
           />
@@ -97,12 +100,11 @@ function Register() {
           <button type="submit">Registrar</button>
         </form>
 
-        {/* Mostrar el mensaje de error si existe */}
         {errorMessage && <p className="error-message">{errorMessage}</p>}
 
         <div className="change-options">
-          <p>Already have an account?</p>
-          <a href="/login">Login</a>
+          <p>¿Ya tienes una cuenta?</p>
+          <a href="/login">Iniciar sesión</a>
         </div>
       </div>
     </div>
