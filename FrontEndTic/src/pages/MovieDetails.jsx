@@ -10,9 +10,9 @@ function MovieDetails() {
   const location = useLocation();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [selectedDay, setSelectedDay] = useState(""); 
-  const [functions, setFunctions] = useState([]); 
-  const [showSeatsModal, setShowSeatsModal] = useState(false); 
+  const [selectedDay, setSelectedDay] = useState("");
+  const [functions, setFunctions] = useState([]);
+  const [showSeatsModal, setShowSeatsModal] = useState(false);
   const [selectedFunctionId, setSelectedFunctionId] = useState(null); // Cambio aquí
   const title = location.state?.title || slug.replace(/-/g, " ");
 
@@ -64,7 +64,10 @@ function MovieDetails() {
   if (!movie) return <p>No se encontró la película.</p>;
 
   return (
-    <div className="movie-page-container" style={{ overflowY: "hidden", height: "100vh" }}>
+    <div
+      className="movie-page-container"
+      style={{ overflowY: "hidden", height: "100vh" }}
+    >
       <Header />
 
       <nav className="sidebar">
@@ -85,13 +88,15 @@ function MovieDetails() {
 
         {functions.length > 0 && (
           <div className="function-select-container">
-            <p className="select-cine-text">Seleccione una función para comprar</p>
+            <p className="select-cine-text">
+              Seleccione una función para comprar
+            </p>
             <div className="nav-buttons">
               {functions.map((func, index) => (
                 <button
                   key={index}
                   className="cine-button"
-                  onClick={() => openSeatsModal(func.idFun)} 
+                  onClick={() => openSeatsModal(func.idFun)}
                 >
                   {func.startTime.slice(0, 5)} - {func.endTime.slice(0, 5)} |{" "}
                   {func.projectionRoom.type}
@@ -102,7 +107,9 @@ function MovieDetails() {
         )}
 
         {functions.length === 0 && (
-          <p className="no-functions-message">No hay funciones para este día.</p>
+          <p className="no-functions-message">
+            No hay funciones para este día.
+          </p>
         )}
       </nav>
 
@@ -121,9 +128,12 @@ function MovieDetails() {
 
         <div className="movie-info">
           <h1>{movie.title}</h1>
+          <hr />
           <div className="movie-meta">
             <span className="movie-rating">Apta {movie.age}</span>
-            <span>{Math.floor(movie.duration / 60)}h {movie.duration % 60}m</span>
+            <span>
+              {Math.floor(movie.duration / 60)}h {movie.duration % 60}m
+            </span>
             <span>{movie.genre}</span>
           </div>
           <p className="movie-description">{movie.description}</p>
@@ -137,7 +147,8 @@ function MovieDetails() {
             <button className="close-button" onClick={closeSeatsModal}>
               X
             </button>
-            <Seats idFun={selectedFunctionId} /> {/* Asegúrate de pasar el valor */}
+            <Seats idFun={selectedFunctionId} />{" "}
+            {/* Asegúrate de pasar el valor */}
           </div>
         </div>
       )}
