@@ -24,7 +24,7 @@
 /* Imagen de la película */
 .movie-poster {
   position: relative;
-  width: 30%;
+  width: 26%;
   flex-shrink: 0;
   padding: 2%;
 }
@@ -174,4 +174,47 @@
 .cine-button:hover {
   background-color: #09085e;
   color: white;
+}
+
+/* Estilos del modal */
+.modal-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 800px; /* Ajusta el ancho del fondo al deseado */
+  height: 800px; /* Ajusta la altura del fondo al deseado */
+  background: rgba(0, 0, 0, 0); /* Fondo semitransparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%); /* Centra el fondo en la pantalla */
+  z-index: 1000;
+}
+
+.modal-content {
+  background: rgba(
+    255,
+    255,
+    255,
+    0.341
+  ); /* Fondo opaco para el contenido del modal */
+  padding: 1rem;
+  border-radius: 8px;
+  width: 700px; /* Ajusta el ancho del contenido */
+  height: auto;
+  max-height: 90%;
+  overflow-y: auto;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #333; /* Color oscuro para visibilidad */
+  cursor: pointer;
 }

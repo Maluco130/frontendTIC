@@ -2,7 +2,7 @@ import "../styles/login_register.css";
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header"; // Importa el Header
+import Header from "../components/Header"; 
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -33,9 +33,12 @@ export default function Login() {
 
       console.log("Login exitoso:", response.data);
 
-      // Guarda tanto el nombre como el correo en `localStorage`
-      localStorage.setItem("userName", formData.name); // Guarda el nombre ingresado
-      localStorage.setItem("userEmail", formData.mail); // Guarda el correo ingresado
+      // Guarda el token de autenticación en `localStorage`
+      localStorage.setItem("authToken", response.data.token);
+
+      // Guarda nombre y correo en `localStorage`
+      localStorage.setItem("userName", formData.name);
+      localStorage.setItem("userEmail", formData.mail);
       navigate("/"); // Redirigir a la página principal
     } catch (error) {
       console.error("Error en el login:", error.response ? error.response.data : error.message);
@@ -45,7 +48,7 @@ export default function Login() {
 
   return (
     <div className="login-page no-sidebar">
-      <Header /> {/* Incluye el Header */}
+      <Header />
       <div className="login-container">
         <h2>Iniciar sesión</h2>
 
@@ -83,7 +86,6 @@ export default function Login() {
           <button type="submit">Iniciar Sesión</button>
         </form>
 
-        {/* Mostrar el mensaje de error si existe */}
         {errorMessage && <p className="error-message">{errorMessage}</p>}
 
         <div className="change-options">
