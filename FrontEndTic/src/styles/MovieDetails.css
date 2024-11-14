@@ -233,3 +233,7 @@
   color: #333; /* Color oscuro para visibilidad */
   cursor: pointer;
 }
+
+.close-button:hover {
+  color: #000; /* Color más oscuro al pasar el cursor */
+}
