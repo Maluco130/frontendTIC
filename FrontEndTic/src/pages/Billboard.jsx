@@ -4,7 +4,7 @@ import "../styles/Billboard.css";
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import PlaceholderImage from "../images/ImagenPortada.webp";
+import PlaceholderImage from "/ImagenPortada.webp";
 
 function Billboard() {
   const [selectedCine, setSelectedCine] = useState(null);
@@ -20,7 +20,7 @@ function Billboard() {
         `https://wtf-cinema.onrender.com/billboard/branch/${id}`
       );
       if (response.status === 200) {
-        console.log("API response:", response.data); 
+        console.log("API response:", response.data);
         setMovies(response.data);
       } else {
         console.error("Error al obtener la cartelera");
