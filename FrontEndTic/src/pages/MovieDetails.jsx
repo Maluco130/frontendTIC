@@ -20,7 +20,7 @@ function MovieDetails() {
   useEffect(() => {
     if (title) {
       axios
-        .get(`http://localhost:8081/movies/title/${title}`, {
+        .get(`https://wtf-cinema.onrender.com/movies/title/${title}`, {
           withCredentials: true,
         })
         .then((response) => {
@@ -38,7 +38,7 @@ function MovieDetails() {
   useEffect(() => {
     if (selectedDay) {
       axios
-        .get(`http://localhost:8081/functions/fun/1/${title}/${selectedDay}`, {
+        .get(`https://wtf-cinema.onrender.com/functions/fun/1/${title}/${selectedDay}`, {
           withCredentials: true,
         })
         .then((response) => {

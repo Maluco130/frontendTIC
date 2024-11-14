@@ -27,7 +27,7 @@ function Seats({ idFun }) {
   useEffect(() => {
     const fetchReservedSeats = async () => {
       try {
-        const response = await axios.get(`http://localhost:8081/seats/reserved/fun/${idFun}`);
+        const response = await axios.get(`https://wtf-cinema.onrender.com/seats/reserved/fun/${idFun}`);
         const reservedSeats = response.data;
         setAsientos(generarAsientos(reservedSeats));
       } catch (error) {
@@ -66,7 +66,7 @@ function Seats({ idFun }) {
     };
 
     try {
-      const response = await axios.post("http://localhost:8081/movies/reserve", reservaData, {
+      const response = await axios.post("https://wtf-cinema.onrender.com/movies/reserve", reservaData, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${authToken}`,
