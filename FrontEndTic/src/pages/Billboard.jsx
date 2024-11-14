@@ -17,7 +17,7 @@ function Billboard() {
     setMovies([]);
     try {
       const response = await axios.get(
-        `http://localhost:8081/billboard/branch/${id}`
+        `https://wtf-cinema.onrender.com/billboard/branch/${id}`
       );
       if (response.status === 200) {
         console.log("API response:", response.data); 
