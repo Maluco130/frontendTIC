@@ -5,6 +5,7 @@
   font-family: Arial, sans-serif;
 }
 
+
 .titulo-principal {
   text-align: center;
   color: #ffffff;
@@ -24,6 +25,13 @@
 .lista-reservaciones {
   display: grid;
   gap: 20px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+  height: 100%; 
 }
 
 .tarjeta-reservacion {
