@@ -38,9 +38,12 @@ function MovieDetails() {
   useEffect(() => {
     if (selectedDay) {
       axios
-        .get(`https://wtf-cinema.onrender.com/functions/fun/1/${title}/${selectedDay}`, {
-          withCredentials: true,
-        })
+        .get(
+          `https://wtf-cinema.onrender.com/functions/fun/1/${title}/${selectedDay}`,
+          {
+            withCredentials: true,
+          }
+        )
         .then((response) => {
           setFunctions(response.data);
         })
