@@ -33,13 +33,16 @@ function Register() {
         },
       });
 
-      console.log("Registro exitoso:", response.data);
+      console.log("Registro exitoso - respuesta completa:", response.data);
 
       // Guarda el token de autenticación en `localStorage`
-      localStorage.setItem("authToken", response.data.token);
-
-      localStorage.setItem("userName", formData.name);
-      navigate("/");
+      if (response.data.token) {
+        localStorage.setItem("authToken", response.data.token);
+        localStorage.setItem("userName", response.data.user.name);
+        navigate("/");
+      } else {
+        setErrorMessage("No se pudo obtener el token de autenticación. Por favor, inicia sesión manualmente.");
+      }
     } catch (error) {
       console.error("Error en el registro:", error.response ? error.response.data : error.message);
       if (error.response && error.response.status === 409) {

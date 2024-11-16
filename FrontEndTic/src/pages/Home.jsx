@@ -21,6 +21,7 @@ function Home({ menuContent, pageContent }) {
   const handleLogout = () => {
     localStorage.removeItem("userName");
     localStorage.removeItem("userEmail");
+    localStorage.removeItem("authToken");
     setUserName(null);
     setIsDropdownOpen(false);
     navigate("/login");
