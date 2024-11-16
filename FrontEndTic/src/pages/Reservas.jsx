@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Home from "./Home.jsx";
-import "../styles/Reservas.css"; // Asegúrate de enlazar el archivo CSS
+import "../styles/Reservas.css";
 
 const CancelarReservaciones = () => {
   const [reservaciones, setReservaciones] = useState([]);
   const [reservacionSeleccionada, setReservacionSeleccionada] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Obtener token de autenticación y correo electrónico desde localStorage
     const authToken = localStorage.getItem("authToken");
     const userEmail = localStorage.getItem("userEmail");
 
     if (!authToken || !userEmail) {
-      setError("No estás autenticado. Por favor, inicia sesión.");
-      setLoading(false);
+      navigate("/"); // Redirige al Home si no está autenticado
       return;
     }
 
-    // Función para obtener las reservaciones desde el backend
     const fetchReservaciones = async () => {
       try {
         const response = await fetch(
@@ -28,63 +27,51 @@ const CancelarReservaciones = () => {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${authToken}`, // Enviar el token en el encabezado
+              Authorization: `Bearer ${authToken}`,
             },
           }
         );
 
         if (!response.ok) {
-          throw new Error(
-            response.status === 401
-              ? "Tu sesión ha expirado. Por favor, inicia sesión nuevamente."
-              : "Error al obtener las reservaciones."
-          );
+          throw new Error("Error al obtener las reservaciones.");
         }
 
         const data = await response.json();
         setReservaciones(data);
-      } catch (error) {
-        setError(error.message);
+      } catch {
+        navigate("/"); // Redirige al Home si hay algún error
       } finally {
         setLoading(false);
       }
     };
 
     fetchReservaciones();
-  }, []);
+  }, [navigate]);
 
-  const cancelarReservacion = async (id) => {
+  const cancelarReservacion = async (bookingId, seatsToCancel) => {
+    const authToken = localStorage.getItem("authToken");
+
+    if (!authToken) {
+      navigate("/"); // Redirige al Home si no hay token
+      return;
+    }
+
+    const bodyData = JSON.stringify({ bookingId, seatsToCancel });
+
     try {
-      const authToken = localStorage.getItem("authToken");
+      await fetch(`https://wtf-cinema.onrender.com/movies/cancelReserve`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: bodyData,
+      });
 
-      if (!authToken) {
-        setError("No estás autenticado. Por favor, inicia sesión.");
-        return;
-      }
-
-      const response = await fetch(
-        `https://wtf-cinema.onrender.com/movies/reservation/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${authToken}`, // Enviar el token en el encabezado
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Error al cancelar la reservación.");
-      }
-
-      // Actualizar las reservaciones locales después de la eliminación
-      setReservaciones((prevReservaciones) =>
-        prevReservaciones.filter((reservacion) => reservacion.id !== id)
-      );
-
-      setReservacionSeleccionada(null);
-    } catch (error) {
-      setError(error.message);
+      // Redirigir directamente al Home tras la cancelación, sin mostrar mensajes
+      navigate("/");
+    } catch {
+      navigate("/"); // Redirige al Home incluso si hay error
     }
   };
 
@@ -105,10 +92,6 @@ const CancelarReservaciones = () => {
       <h1 className="titulo-principal">Cancelar Reservaciones</h1>
       {loading ? (
         <p className="mensaje-sin-reservaciones">Cargando reservaciones...</p>
-      ) : error ? (
-        <div className="mensaje-sin-reservaciones">
-          <h2>Error: {error}</h2>
-        </div>
       ) : reservaciones.length === 0 ? (
         <div className="mensaje-sin-reservaciones">
           <h2>No tienes reservaciones activas.</h2>
@@ -116,27 +99,36 @@ const CancelarReservaciones = () => {
       ) : (
         <div className="lista-reservaciones">
           {reservaciones.map((reservacion) => {
-            const { movieTitle, startTime, seats } = reservacion;
-            const fecha = startTime ? startTime.split("T")[0] : "Fecha no disponible";
-            const hora = startTime && startTime.split("T")[1]
-              ? startTime.split("T")[1].slice(0, 5)
-              : "Hora no disponible";
+            const {
+              movieTitle,
+              branchNeighborhood,
+              startTime,
+              seats,
+              functionId,
+            } = reservacion;
+
+            let cine = branchNeighborhood || "Cine no disponible";
+            let hora = startTime || "Hora no disponible";
 
             return (
-              <div key={reservacion.id} className="tarjeta-reservacion">
-                <h2 className="tarjeta-reservacion-titulo">{movieTitle || "Película no disponible"}</h2>
+              <div key={functionId} className="tarjeta-reservacion">
+                <h2 className="tarjeta-reservacion-titulo">
+                  {movieTitle || "Película no disponible"}
+                </h2>
                 <p className="tarjeta-reservacion-detalle">
-                  <strong>Fecha:</strong> {fecha}
+                  <strong>Cine:</strong> {cine}
                 </p>
                 <p className="tarjeta-reservacion-detalle">
                   <strong>Hora:</strong> {hora}
                 </p>
                 <p className="tarjeta-reservacion-detalle">
-                  <strong>Asientos:</strong> {seats && seats.length > 0 ? seats.join(", ") : "No se especificaron asientos"}
+                  <strong>Asientos:</strong>{" "}
+                  {seats && seats.length > 0 ? seats.join(", ") : "Cancelada"}
                 </p>
                 <button
                   className="boton-cancelar"
                   onClick={() => abrirDialogo(reservacion)}
+                  disabled={!seats || seats.length === 0} // Deshabilitar botón si no hay asientos
                 >
                   Cancelar Reservación
                 </button>
@@ -159,7 +151,12 @@ const CancelarReservaciones = () => {
               </button>
               <button
                 className="boton-primario"
-                onClick={() => cancelarReservacion(reservacionSeleccionada.id)}
+                onClick={() => {
+                  cancelarReservacion(
+                    reservacionSeleccionada.functionId,
+                    reservacionSeleccionada.seats
+                  );
+                }}
               >
                 Sí, cancelar reservación
               </button>
