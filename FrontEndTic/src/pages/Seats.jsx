@@ -22,8 +22,9 @@ function Seats({ idFun }) {
   const navigate = useNavigate();
   const [asientos, setAsientos] = useState(generarAsientos());
   const [asientosSeleccionados, setAsientosSeleccionados] = useState([]);
-  const [confirmacion, setConfirmacion] = useState(null); // Estado para la confirmación
-
+  const [confirmacion, setConfirmacion] = useState(null); 
+  const [error, setError] = useState(null);
+  
   useEffect(() => {
     const fetchReservedSeats = async () => {
       try {
@@ -56,6 +57,7 @@ function Seats({ idFun }) {
     const authToken = localStorage.getItem("authToken");
     if (!authToken) {
       console.error("No se encontró un token de autenticación.");
+      setError("Parece que no has iniciado sesión. Por favor, inicia sesión para reservar tus asientos.");
       return;
     }
 
@@ -74,9 +76,10 @@ function Seats({ idFun }) {
       });
 
       console.log("Reserva exitosa:", response.data);
-      setConfirmacion(seatsNumberToReserve); // Muestra la confirmación con los asientos reservados
+      setConfirmacion(seatsNumberToReserve); 
     } catch (error) {
       console.error("Error al realizar la reserva:", error.response ? error.response.data : error.message);
+      setError("Ocurrió un error al realizar la reserva. Por favor, intenta iniciar sesión nuevamente.");
     }
   };
 
@@ -84,26 +87,35 @@ function Seats({ idFun }) {
     navigate("/");
   };
 
-  return (
-    <div className="container">
-      <div className="content">
-        {/* Solo muestra el título "Screen" si no hay confirmación */}
-        {!confirmacion && (
-          <div className="title">
-            <h1>Screen</h1>
-            <h2>________________________________________________</h2>
-          </div>
-        )}
-        
-        {confirmacion ? (
-          <div className="confirmation-message">
-            <h2>¡Reservaste exitosamente!</h2>
-            <p>Asientos reservados: {confirmacion.join(", ")}</p>
-            <button className="return-button" onClick={volverInicio}>
-              Volver al inicio
-            </button>
-          </div>
-        ) : (
+return (
+  <div className="container">
+    <div className="content">
+      {/* Mostrar mensaje de error si no se ha iniciado sesión */}
+      {error ? (
+        <div className="error-message">
+          <h2>Error</h2>
+          <p>{error}</p>
+          <button className="return-button" onClick={() => navigate("/login")}>
+            Ir a iniciar sesión
+          </button>
+        </div>
+      ) : confirmacion ? (
+        <div className="confirmation-message">
+          <h2>¡Reservaste exitosamente!</h2>
+          <p>Asientos reservados: {confirmacion.join(", ")}</p>
+          <button className="return-button" onClick={volverInicio}>
+            Volver al inicio
+          </button>
+        </div>
+      ) : (
+        <>
+          {/* Solo muestra el título "Screen" si no hay confirmación */}
+          {!confirmacion && (
+            <div className="title">
+              <h1>Screen</h1>
+              <h2>________________________________________________</h2>
+            </div>
+          )}
           <div className="seats-and-legend">
             <div className="seat-grid">
               {asientos.map((asiento) => (
@@ -124,7 +136,6 @@ function Seats({ idFun }) {
                 </button>
               ))}
             </div>
-
             <div className="legend-and-confirm">
               <div className="legend">
                 <div className="legend-item">
@@ -161,10 +172,13 @@ function Seats({ idFun }) {
               </div>
             </div>
           </div>
-        )}
-      </div>
+        </>
+      )}
     </div>
-  );
+  </div>
+);
+  
+  
 }
 
 export default Seats;
