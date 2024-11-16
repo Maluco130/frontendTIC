@@ -1,0 +1,105 @@
+.cancelar-reservaciones {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 6%;
+  font-family: Arial, sans-serif;
+}
+
+.titulo-principal {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.mensaje-sin-reservaciones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #47f3ff;
+  border-radius: 4px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.lista-reservaciones {
+  display: grid;
+  gap: 20px;
+}
+
+.tarjeta-reservacion {
+  background-color: #575e60;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta-reservacion-titulo {
+  color: #7afffd;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.tarjeta-reservacion-detalle {
+  margin: 5px 0;
+}
+
+.boton-cancelar {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.boton-cancelar:hover {
+  background-color: #c82333;
+}
+
+.dialogo-fondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.botones-dialogo {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.boton-secundario,
+.boton-primario {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.boton-secundario {
+  background-color: #6c757d;
+  color: white;
+}
+
+.boton-primario {
+  background-color: #dc3545;
+  color: white;
+}
+
+.boton-secundario:hover {
+  background-color: #5a6268;
+}
+
+.boton-primario:hover {
+  background-color: #c82333;
+}

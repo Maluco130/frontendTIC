@@ -41,7 +41,10 @@ function Home({ menuContent, pageContent }) {
               </button>
               {isDropdownOpen && (
                 <div className="dropdown-menu">
-                  <button className="dropdown-item" onClick={() => handleSelect("/reservas")}>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("/reservas")}
+                  >
                     Ver mis reservas
                   </button>
                   <button className="dropdown-item" onClick={handleLogout}>
@@ -51,15 +54,16 @@ function Home({ menuContent, pageContent }) {
               )}
             </div>
           ) : (
-            <button className="nav-toggle" onClick={() => handleSelect("/login")}>
-              Login
+            <button
+              className="nav-toggle"
+              onClick={() => handleSelect("/login")}
+            >
+              Iniciar Sesión
             </button>
           )}
         </div>
 
-        <div className="nav-buttons-container">
-          {menuContent}
-        </div>
+        <div className="nav-buttons-container">{menuContent}</div>
       </nav>
       <div className="main-content">
         <main className="content">{pageContent}</main>

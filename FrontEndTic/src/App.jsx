@@ -10,6 +10,7 @@ import "./index.css";
 import MovieDetails from "./pages/MovieDetails";
 import Header from "./components/Header";
 import Seats from "./pages/Seats.jsx";
+import Reservas from "./pages/Reservas.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/movie/:slug" element={<MovieDetails />} />
         <Route path="/Seats" element={<Seats />} />
+        <Route path="/reservas" element={<Reservas />} />
       </Routes>
     </Router>
   );
