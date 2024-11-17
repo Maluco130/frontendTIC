@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
 
-function Register() {
+export default function Register() {
   const [formData, setFormData] = useState({
     name: "",
     mail: "",
@@ -114,5 +114,3 @@ function Register() {
     </div>
   );
 }
-
-export default Register;
