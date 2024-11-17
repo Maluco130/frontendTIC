@@ -108,7 +108,7 @@ export default function Register() {
 
         <div className="change-options">
           <p>¿Ya tienes una cuenta?</p>
-          <a href="/login">Iniciar sesión</a>
+          <link href="/login">Iniciar sesión</link>
         </div>
       </div>
     </div>
