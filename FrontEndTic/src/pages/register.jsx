@@ -107,8 +107,8 @@ export default function Register() {
         {errorMessage && <p className="error-message">{errorMessage}</p>}
 
         <div className="change-options">
-          <p>¿Ya tienes una cuenta?</p>
-          <Link href="/login">Iniciar sesión</Link>
+          <p>Ya tienes una cuenta?</p>
+          <Link to="/login">Iniciar sesión</Link>
         </div>
       </div>
     </div>
