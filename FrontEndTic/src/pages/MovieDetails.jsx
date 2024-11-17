@@ -86,6 +86,11 @@ function MovieDetails() {
             <option value="13">Miércoles 13</option>
             <option value="14">Jueves 14</option>
             <option value="15">Viernes 15</option>
+            <option value="16">Lunes 16</option>
+            <option value="17">Martes 17</option>
+            <option value="18">Miércoles 18</option>
+            <option value="19">Jueves 19</option>
+            <option value="20">Viernes 20</option>
           </select>
         </div>
 
