@@ -40,6 +40,7 @@ export default function Register() {
       if (response.data.token) {
         localStorage.setItem("authToken", response.data.token);
         localStorage.setItem("userName", response.data.user.name);
+        localStorage.setItem("userEmail", formData.mail); 
         navigate("/");
       } else {
         setErrorMessage("No se pudo obtener el token de autenticación. Por favor, inicia sesión manualmente.");
