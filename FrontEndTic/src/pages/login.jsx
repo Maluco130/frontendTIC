@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header"; 
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -90,7 +91,7 @@ export default function Login() {
 
         <div className="change-options">
           <p>¿No tienes una cuenta?</p>
-          <a href="/register">Regístrate</a>
+          <Link to="/register">Regístrate</Link>
         </div>
       </div>
     </div>
